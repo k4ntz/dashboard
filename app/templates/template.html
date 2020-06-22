@@ -1,0 +1,69 @@
+<html>
+<head>
+  <style>
+  table, td {
+    border: 1px solid black;
+  }
+  table {
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+  .host_smi {
+    display: inline-block;
+    margin-right: 30px;
+  }
+  .process_name {
+    padding: 0 20 0 5;
+    background-color: rgb(102, 118, 134);
+  }
+  h2 {
+    margin-bottom: 5px;
+  }
+  </style>
+
+  <title>Servers GPUs</title>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type=text/javascript>
+  $(document).ready(function(){
+  $(".name").on("click", function() {
+  name_list = []
+  $(".process_name").hide()
+  var flag = 1
+  $("input:checkbox[name=name]:checked").each(function(){
+  		flag = 0;
+    	var value = $(this).val();
+      	$(".process_name").filter(function() {
+            if($(this).context.className.split(/\s+/).indexOf($(value).selector) > -1)
+        		$(this).show()
+    	});
+ 	 });
+    if(flag == 1)
+    	$(".process_name").show()
+  });
+});
+</script>
+</head>
+<body style="background-color: SlateGrey; ">*
+  <div class="filter">
+    {% for color in color_list%}
+    <input type="checkbox" class="name" name="name" value="{{ color }}" /> {{ color }}
+    {% endfor %}
+  </div>
+  {% for hostname, gpus in formated_dict.items() %}
+  <div class="host_smi">
+        <h2> {{ hostname }} </h2>
+        <table>
+        {% for gpu, process_list in gpus.items() %}
+          <tr>
+            <td> {{ gpu }} </td>
+            {% for process in process_list %}
+                <td class="process_name {{ process[1] }}" style="color:{{ process[1] }}; display: inline-bl;"> {{ process[0]}} </td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </table>
+  </div>
+  {% endfor %}
+</body>
+</html>
