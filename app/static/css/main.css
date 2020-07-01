@@ -1,0 +1,42 @@
+body {
+  background-image: url("../images/kristian_new_office.png");
+  background-position: center no-repeat;
+  background-size: cover;
+}
+table, td, th {
+  border: 1px solid black;
+}
+table {
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+.host_smi {
+  display: inline-block;
+  margin-right: 30px;
+}
+.process_name {
+  padding: 0 20 0 5;
+  background-color: rgba(102, 118, 134, 0.5);
+}
+
+h2 {
+  margin-bottom: 5px;
+}
+
+.filter_help {
+  display: inline;
+}
+
+#left_col {
+  border-right: 2px dotted black;
+  margin-right: 3px;
+}
+
+
+.main-wrap{
+  display: flex;
+  flex-direction: row;
+}
+.main-wrap > div{
+  flex: 1;
+}
