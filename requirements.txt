@@ -1,4 +1,4 @@
 fabric==2.5.0
 termcolor==1.1.0
-Flask==1.1.2
+Flask==2.3.2
 ipdb==0.13.2
